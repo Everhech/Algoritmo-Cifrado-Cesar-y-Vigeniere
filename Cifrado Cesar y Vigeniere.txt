@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+#define TAM 500
+
+int main()
+{
+	int b, v, r, r2, p;
+	char m[TAM], a[TAM], c, n[TAM];
+
+	printf("\n\nEjercicio 2: Cifrado Cesar y Cifrado Vigeniere\n");
+	printf("Se desplazaran 3 posiciones");
+	printf("\n\nDigite la palabra/oracion a encriptar: ");
+	gets(m);
+	r=strlen(m);
+	strupr(m);
+	strcpy(n, m);
+	p=strlen(n);
+	printf("\n");
+
+
+	while(r2!=2)
+	{
+		printf("Palabra/oracion cifrada en Cesar: ");
+		for(int i=0;i<r;i++) {
+    		if(m[i]=='z' || m[i]=='Z'|| m[i]=='y' ||m[i]=='Y' || m[i]==' '){
+    	 		if(m[i]=='z'|| m[i]=='Z'){
+    	 			m[i]='c';
+       			}
+   		   		if(m[i]=='y'||m[i]=='Y') {
+	        		m[i]='b';
+   		     	}
+   		 	 	if(m[i]==' ') {
+   	    			m[i]=' ';
+   	    		}  
+   		 	}
+   		 	else {
+  	 	 		m[i]+=3;
+   		 	}
+		}
+		printf("%s", strupr(m));
+		printf("\n\n");
+
+		strcpy(a, m);
+		b=strlen(a);
+
+		printf("Palabra/oracion cifrada en vigeniere: ");
+		for (int i = 0; i < p; ++i)
+		{
+			v = (n[i]-65 + toupper(a[i % b])-65) % 26 + 65;
+			c = v;
+			if (isalpha(n[i]))
+			{
+				printf("%c", c);
+			}
+			else{
+				printf("%c", n[i]);
+			}
+		}
+
+		printf("\n\n¿Desea intentar nuevamente? (Si/No) \n1.Si  \n2.No (Salir) \n¿Que eliges?: ");
+		scanf("%d", &r2);
+		getchar();
+
+		if (r2==1)
+		{
+			printf("\n\nDigite la palabra/oracion a encriptar: ");
+			gets(m);
+			r=strlen(m);
+			strupr(m);
+			strcpy(n, m);
+			p=strlen(n);
+			printf("\n");
+		}
+		else{
+			printf("\nHasta luego\n");
+		}
+	}
+	
+	return 0;
+}
